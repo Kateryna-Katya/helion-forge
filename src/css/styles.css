@@ -1,1 +1,245 @@
-1
+/* --- ЭТАП 0: ГЛОБАЛЬНЫЕ СТИЛИ --- */
+:root {
+    --color-bg: #FCF9F1;
+    --color-dark: #1A1A1A;
+    --color-accent: #FF5F40;
+    /* Vibrant Coral */
+    --color-primary: #4F46E5;
+    /* Indigo */
+    --color-text: #404040;
+    --color-white: #FFFFFF;
+
+    --font-main: 'Inter', sans-serif;
+    --font-heading: 'Space Grotesque', sans-serif;
+
+    --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --container-width: 1280px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: initial;
+    /* Для Lenis */
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.text-accent {
+    color: var(--color-primary);
+}
+
+/* Кнопки */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn--outline {
+    border: 1px solid var(--color-dark);
+    background: transparent;
+}
+
+.btn--outline:hover {
+    background: var(--color-dark);
+    color: var(--color-white);
+}
+
+/* --- ЭТАП 1: ХЕДЕР --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 20px 0;
+    transition: var(--transition);
+}
+
+.header--scrolled {
+    background: rgba(252, 249, 241, 0.85);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.header__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.logo__icon {
+    width: 32px;
+    height: 32px;
+    background: var(--color-primary);
+    border-radius: 8px;
+    position: relative;
+}
+
+.nav__list {
+    display: flex;
+    gap: 32px;
+}
+
+.nav__link {
+    font-size: 15px;
+    font-weight: 500;
+    opacity: 0.7;
+}
+
+.nav__link:hover {
+    opacity: 1;
+    color: var(--color-primary);
+}
+
+.burger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.burger span {
+    width: 25px;
+    height: 2px;
+    background: var(--color-dark);
+    transition: var(--transition);
+}
+
+/* --- ЭТАП 2: ФУТЕР --- */
+.footer {
+    background: var(--color-white);
+    padding: 80px 0 40px;
+    margin-top: 100px;
+    border-radius: 40px 40px 0 0;
+}
+
+.footer__grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer__description {
+    margin-top: 20px;
+    opacity: 0.7;
+    max-width: 300px;
+}
+
+.footer__title {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    margin-bottom: 24px;
+}
+
+.footer__list li {
+    margin-bottom: 12px;
+}
+
+.footer__list a {
+    opacity: 0.6;
+}
+
+.footer__list a:hover {
+    opacity: 1;
+    padding-left: 5px;
+    color: var(--color-accent);
+}
+
+.footer__contact-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+    opacity: 0.8;
+}
+
+.footer__contact-list svg {
+    width: 20px;
+    color: var(--color-primary);
+    flex-shrink: 0;
+}
+
+.footer__bottom {
+    padding-top: 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+/* --- ADAPTIVE --- */
+@media (max-width: 992px) {
+    .footer__grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .burger {
+        display: flex;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .header__actions .btn {
+        display: none;
+    }
+}
