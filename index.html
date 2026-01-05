@@ -13,7 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesque:wght@500;700&display=swap"
     rel="stylesheet">
     <script type="module" crossorigin src="/helion-forge/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/helion-forge/assets/styles-Dibiz69U.css">
+    <link rel="stylesheet" crossorigin href="/helion-forge/assets/styles-Crn20rOV.css">
   </head>
   <body>
     <header class="header">
@@ -42,10 +42,55 @@
     </div>
   </div>
 </header>
+<div class="menu-overlay" id="menu-overlay">
+  <nav class="menu-overlay__nav">
+    <ul class="menu-overlay__list">
+      <li><a href="#hero" class="menu-overlay__link">Главная</a></li>
+      <li><a href="#platform" class="menu-overlay__link">О платформе</a></li>
+      <li><a href="#benefits" class="menu-overlay__link">Преимущества</a></li>
+      <li><a href="#innovations" class="menu-overlay__link">Инновации</a></li>
+      <li><a href="#blog" class="menu-overlay__link">Блог</a></li>
+    </ul>
+    <a href="#contact" class="btn btn--primary">Запросить доступ</a>
+  </nav>
+</div>
 
     <main id="main-content">
       <!-- Loads the specified .html file -->
-      
+      <section class="hero" id="hero">
+    <div class="hero__bg">
+        <div class="hero__blob hero__blob--1"></div>
+        <div class="hero__blob hero__blob--2"></div>
+    </div>
+
+    <div class="container hero__container">
+        <div class="hero__content">
+            <div class="badge fade-in">Технология нового поколения</div>
+            <h1 class="hero__title fade-in">
+                Инновации <br>
+                <span class="text-accent">на пальцах</span>
+            </h1>
+            <p class="hero__text fade-in">
+                Переосмыслите подход к развитию. Платформа года для тех, кто ищет AI-инструменты для реальных задач и
+                решения, которые меняют правила игры.
+            </p>
+            <div class="hero__btns fade-in">
+                <a href="#contact" class="btn btn--primary">Начать сейчас</a>
+                <a href="#platform" class="btn btn--link">
+                    Узнать детали
+                    <i data-lucide="arrow-right"></i>
+                </a>
+            </div>
+            <div class="hero__info fade-in">
+                <p>⚡ Платформа уже доступна в Европе</p>
+            </div>
+        </div>
+
+        <div class="hero__visual fade-in">
+            <div id="lottie-hero" class="hero__lottie"></div>
+        </div>
+    </div>
+</section>
     </main>
 
     <footer class="footer">
@@ -108,6 +153,6 @@
 </footer>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js"></script>
   </body>
 </html>
