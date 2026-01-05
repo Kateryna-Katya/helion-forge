@@ -426,3 +426,241 @@ img {
         order: -1;
     }
 }
+/* Общие стили секций */
+.section {
+    padding: 100px 0;
+}
+
+.section__header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section__title {
+    font-family: var(--font-heading);
+    font-size: clamp(32px, 4vw, 48px);
+    margin-bottom: 20px;
+}
+
+.section__subtitle {
+    max-width: 600px;
+    margin: 0 auto;
+    opacity: 0.7;
+}
+
+/* Platform & Benefits */
+.platform__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.info-item {
+    margin-bottom: 30px;
+}
+
+.info-item h3 {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.benefits__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.benefit-card {
+    background: var(--color-white);
+    padding: 40px;
+    border-radius: 24px;
+    transition: var(--transition);
+}
+
+.benefit-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+}
+
+.benefit-card__icon {
+    width: 50px;
+    height: 50px;
+    background: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+/* Innovations Banner */
+.innovations__banner {
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 80px;
+    border-radius: 40px;
+    text-align: center;
+}
+
+.btn--white {
+    background: var(--color-white);
+    color: var(--color-primary);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+/* Blog */
+.blog__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.post {
+    background: var(--color-white);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.post__img {
+    height: 250px;
+    background: #eee;
+}
+
+.post__content {
+    padding: 30px;
+}
+
+.post__date {
+    font-size: 14px;
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 10px;
+}
+
+/* Contact Form */
+.contact__wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    background: var(--color-white);
+    padding: 50px;
+    border-radius: 30px;
+}
+
+.form__group {
+    margin-bottom: 20px;
+}
+
+.form input {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.form input:focus {
+    border-color: var(--color-primary);
+}
+
+.form__captcha {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    background: var(--color-bg);
+    padding: 10px 20px;
+    border-radius: 12px;
+}
+
+.checkbox {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.btn--full {
+    width: 100%;
+    justify-content: center;
+}
+
+.form-message {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+
+.form-message.success {
+    color: #10b981;
+    display: block;
+}
+
+/* Cookie Popup */
+.cookie-popup {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    right: 30px;
+    background: var(--color-dark);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    z-index: 2000;
+    transform: translateY(200px);
+    transition: transform 0.6s ease;
+}
+
+.cookie-popup.active {
+    transform: translateY(0);
+}
+
+.btn--sm {
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+/* Burger Animation */
+.burger.burger--active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.burger.burger--active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.burger--active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+
+    .platform__grid,
+    .benefits__grid,
+    .blog__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .innovations__banner {
+        padding: 40px 20px;
+    }
+
+    .cookie-popup {
+        flex-direction: column;
+        text-align: center;
+    }
+}

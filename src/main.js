@@ -1,63 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Мобильное меню
+    // Иконки
+    lucide.createIcons();
+
+    // Lenis Smooth Scroll
+    const lenis = new Lenis();
+    function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    // Мобильное меню
     const burger = document.getElementById('burger-menu');
     const menuOverlay = document.getElementById('menu-overlay');
     const overlayLinks = document.querySelectorAll('.menu-overlay__link');
 
     const toggleMenu = () => {
         menuOverlay.classList.toggle('menu-overlay--active');
-        burger.classList.toggle('burger--active'); // Добавьте стили для крестика
-        document.body.style.overflow = menuOverlay.classList.contains('menu-overlay--active') ? 'hidden' : '';
+        burger.classList.toggle('burger--active');
+        document.body.classList.toggle('no-scroll');
     };
 
     burger.addEventListener('click', toggleMenu);
-    
-    overlayLinks.forEach(link => {
-        link.addEventListener('click', toggleMenu);
+    overlayLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+    // Валидация телефона (только цифры)
+    const phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^\d+]/g, '');
     });
 
-    // 2. Lottie Animation (Подключаем абстрактную тех-анимацию)
-    const lottieContainer = document.getElementById('lottie-hero');
-    if (lottieContainer) {
-        lottie.loadAnimation({
-            container: lottieContainer,
-            renderer: 'svg',
-            loop: true,
-            autoplay: true,
-            path: 'https://assets9.lottiefiles.com/packages/lf20_qpwb7taz.json' // Технологичный абстрактный куб/сфера
-        });
-    }
+    // Математическая капча
+    const captchaText = document.getElementById('captcha-text');
+    const num1 = Math.floor(Math.random() * 10) + 1;
+    const num2 = Math.floor(Math.random() * 10) + 1;
+    const captchaResult = num1 + num2;
+    captchaText.innerText = `Сколько будет ${num1} + ${num2}?`;
 
-    // 3. Анимация появления элементов (Simple Observer)
-    const observerOptions = {
-        threshold: 0.1
-    };
+    // Обработка формы
+    const contactForm = document.getElementById('main-contact-form');
+    const formMessage = document.getElementById('form-message');
 
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userCaptcha = document.getElementById('captcha-input').value;
+
+        if (parseInt(userCaptcha) !== captchaResult) {
+            alert('Неверный результат капчи!');
+            return;
+        }
+
+        // AJAX simulation
+        formMessage.innerText = "Отправка...";
+        formMessage.style.display = "block";
+
+        setTimeout(() => {
+            contactForm.reset();
+            formMessage.innerText = "Спасибо! Запрос успешно отправлен. Мы свяжемся с вами в ближайшее время.";
+            formMessage.classList.add('success');
+        }, 1500);
+    });
+
+    // Intersection Observer для анимаций
     const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
+        entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                setTimeout(() => {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                    entry.target.style.transition = "all 0.8s cubic-bezier(0.23, 1, 0.32, 1)";
-                }, index * 150); // Стэк-эффект появления
+                entry.target.classList.add('animate-in');
+                entry.target.style.opacity = "1";
+                entry.target.style.transform = "translateY(0)";
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in').forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(30px)";
+        el.style.transition = "all 0.8s ease-out";
+        observer.observe(el);
+    });
 
-    // 4. Движение blobs за мышью (Микродвижение)
-    window.addEventListener('mousemove', (e) => {
-        const x = e.clientX / window.innerWidth;
-        const y = e.clientY / window.innerHeight;
-        
-        const blob1 = document.querySelector('.hero__blob--1');
-        const blob2 = document.querySelector('.hero__blob--2');
-        
-        if (blob1 && blob2) {
-            blob1.style.transform = `translate(${x * 50}px, ${y * 50}px)`;
-            blob2.style.transform = `translate(${x * -30}px, ${y * -30}px)`;
-        }
+    // Cookie Popup
+    const cookiePopup = document.getElementById('cookie-popup');
+    const cookieAccept = document.getElementById('cookie-accept');
+
+    if (!localStorage.getItem('cookies-accepted')) {
+        setTimeout(() => cookiePopup.classList.add('active'), 2000);
+    }
+
+    cookieAccept.addEventListener('click', () => {
+        localStorage.setItem('cookies-accepted', 'true');
+        cookiePopup.classList.remove('active');
+    });
+
+    // Header scroll
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('.header');
+        header.classList.toggle('header--scrolled', window.scrollY > 50);
     });
 });
